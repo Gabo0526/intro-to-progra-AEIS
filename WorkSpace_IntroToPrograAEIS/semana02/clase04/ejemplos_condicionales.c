@@ -32,11 +32,11 @@ int main()
     {
         printf("Hace mucho calor.\n");
     }
-    else if (temperatura >= 20)
+    else if (temperatura >= 20) // Rango: 30 ... 20
     {
         printf("El clima es agradable.\n");
     }
-    else
+    else // temperatura < 20
     {
         printf("Hace frío.\n");
     }
@@ -109,6 +109,42 @@ int main()
     Haz que el usuario ingrese un número del 1 al 7 y que el programa muestre el nombre del día de la semana usando switch.
     Extra: ¿Cómo podríamos hacer lo mismo con if-else?
     */
+
+    char entradaUsuario[10]; // Paso 1: donde se va a guardar la entrada del usuario
+    int diaSemana;           // Variable donde se almacena el numero que el usuario va a ingresar
+
+    printf("Ingresa un numero para el dia de la semana: ");
+
+    fgets(entradaUsuario, sizeof(entradaUsuario), stdin);
+
+    diaSemana = atoi(entradaUsuario);
+
+    switch (diaSemana)
+    {
+    case 1:
+        printf("Lunes\n");
+        break;
+    case 2:
+        printf("Martes\n");
+        break;
+    case 3:
+        printf("Miercoles\n");
+        break;
+    case 4:
+        printf("Jueves\n");
+        break;
+    case 5:
+        printf("Viernes\n");
+        break;
+    case 6:
+        printf("Sabado\n");
+        break;
+    case 7:
+        printf("Domingo\n");
+        break;
+    default:
+        printf("Ese dia no existe.\n");
+    }
 
     return 0;
 }
