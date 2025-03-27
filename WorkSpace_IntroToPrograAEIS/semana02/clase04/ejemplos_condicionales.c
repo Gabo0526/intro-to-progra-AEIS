@@ -110,14 +110,16 @@ int main()
     Extra: ¿Cómo podríamos hacer lo mismo con if-else?
     */
 
-    char entradaUsuario[10]; // Paso 1: donde se va a guardar la entrada del usuario
-    int diaSemana;           // Variable donde se almacena el numero que el usuario va a ingresar
+    char entradaUsuario[3]; // Paso 1: donde se va a guardar la entrada del usuario
+    int diaSemana;          // Variable donde se almacena el numero que el usuario va a ingresar
 
     printf("Ingresa un numero para el dia de la semana: ");
 
     fgets(entradaUsuario, sizeof(entradaUsuario), stdin);
 
     diaSemana = atoi(entradaUsuario);
+
+    printf("El numero leido es: %d\n", diaSemana);
 
     switch (diaSemana)
     {
@@ -145,6 +147,8 @@ int main()
     default:
         printf("Ese dia no existe.\n");
     }
+
+    printf("%d", sizeof(char)); // Tamanio que ocupa el tipo de dato char
 
     return 0;
 }
