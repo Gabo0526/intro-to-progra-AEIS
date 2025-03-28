@@ -59,7 +59,7 @@ int main()
     char input[4];
 
     printf("Ingrese el primer operando: ");
-    fgets(input, sizeof(input), stdin); // Buffer de entrada (stdin): '2', '3', '\n'
+    fgets(input, sizeof(input), stdin); // EJEMPLO: Buffer de entrada (stdin): '2', '3', '\n'
     num1 = atoi(input);
     printf("\nIngrese el segundo operando: ");
     fgets(input, sizeof(input), stdin);
