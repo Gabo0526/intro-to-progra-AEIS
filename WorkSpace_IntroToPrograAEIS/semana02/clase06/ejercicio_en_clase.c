@@ -56,12 +56,17 @@ int main()
     int resultado;  // Resultado de las operaciones
     int opcion;     // Para trabajar con un menu
 
-    char input[4];
+    char input[4]; // Se necesita que el tamanio de este arreglo sea 4 para procesar numeros positivos de hasta dos digitos y numeros negativos de hasta 1 digito
 
-    printf("Ingrese el primer operando: ");
+    printf("Ingrese el primer operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
     fgets(input, sizeof(input), stdin); // EJEMPLO: Buffer de entrada (stdin): '2', '3', '\n'
+    // fgets va a parar de procesar la entrada del usuario en el buffer stdin si algunas de las siguientes dos condiciones se cumplen:
+    // 1. Se leen (sizeof(input) - 1) caracteres, es decir, 4 - 1 = 3 caracteres
+    // 2. Se encuentra un caracter de salto o nueva linea: "\n"
+    // Si cualquiera de las dos condiciones suceden, fgets deja de procesar la entrada. Puede que stdin se quede con caracteres no procesados
+    // si el usuario no cumple con lo solicitado
     num1 = atoi(input);
-    printf("\nIngrese el segundo operando: ");
+    printf("\nIngrese el segundo operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
     fgets(input, sizeof(input), stdin);
     num2 = atoi(input);
 
