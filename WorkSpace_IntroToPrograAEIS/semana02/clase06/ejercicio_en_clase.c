@@ -32,22 +32,22 @@
 
 int sumar(int a, int b)
 {
-    return 0;
+    return a + b;
 }
 
 int restar(int a, int b)
 {
-    return 0;
+    return a - b;
 }
 
 int multiplicar(int a, int b)
 {
-    return 0;
+    return a * b;
 }
 
 float dividir(int a, int b)
 {
-    return 0.0;
+    return (float)a / b; // (Casteo) Castear a la variable a: convertir su tipo de dato int a float
 }
 
 int main()
@@ -58,19 +58,71 @@ int main()
 
     char input[4]; // Se necesita que el tamanio de este arreglo sea 4 para procesar numeros positivos de hasta dos digitos y numeros negativos de hasta 1 digito
 
-    printf("Ingrese el primer operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
-    fgets(input, sizeof(input), stdin); // EJEMPLO: Buffer de entrada (stdin): '2', '3', '\n'
-    // fgets va a parar de procesar la entrada del usuario en el buffer stdin si algunas de las siguientes dos condiciones se cumplen:
-    // 1. Se leen (sizeof(input) - 1) caracteres, es decir, 4 - 1 = 3 caracteres
-    // 2. Se encuentra un caracter de salto o nueva linea: "\n"
-    // Si cualquiera de las dos condiciones suceden, fgets deja de procesar la entrada. Puede que stdin se quede con caracteres no procesados
-    // si el usuario no cumple con lo solicitado
-    num1 = atoi(input);
-    printf("\nIngrese el segundo operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
-    fgets(input, sizeof(input), stdin);
-    num2 = atoi(input);
+    do
+    {
+        printf("Ingrese el primer operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
+        fgets(input, sizeof(input), stdin); // EJEMPLO: Buffer de entrada (stdin): '2', '3', '\n'
+        // fgets va a parar de procesar la entrada del usuario en el buffer stdin si algunas de las siguientes dos condiciones se cumplen:
+        // 1. Se leen (sizeof(input) - 1) caracteres, es decir, 4 - 1 = 3 caracteres
+        // 2. Se encuentra un caracter de salto o nueva linea: "\n"
+        // Si cualquiera de las dos condiciones suceden, fgets deja de procesar la entrada. Puede que stdin se quede con caracteres no procesados
+        // si el usuario no cumple con lo solicitado
+        num1 = atoi(input);
 
-    printf("\nEl primer operando es: %d y el segundo operando es %d", num1, num2);
+        printf("\nIngrese el segundo operando (Hasta 2 digitos si es positivo y hasta 1 digito si es negativo): ");
+        fgets(input, sizeof(input), stdin);
+        num2 = atoi(input);
+
+        printf("\nEl primer operando es: %d y el segundo operando es %d\n", num1, num2);
+
+        // Menu
+        printf("\nSeleccione una operacion:\n");
+        printf("\n1. Sumar\n");
+        printf("2. Restar\n");
+        printf("3. Multiplicar\n");
+        printf("4. Dividir\n");
+        printf("5. Salir\n");
+        printf("\nIngrese su opcion: (1-4): ");
+
+        fgets(input, sizeof(input), stdin);
+        opcion = atoi(input);
+
+        printf("\nLa opcion que seleccionaste es: %d\n", opcion);
+
+        switch (opcion)
+        {
+        case 1:
+            resultado = sumar(num1, num2);
+            printf("El resultado de la suma es: %d\n", resultado);
+            break;
+        case 2:
+            resultado = restar(num1, num2);
+            printf("El resultado de la resta es: %d\n", resultado);
+            break;
+        case 3:
+            resultado = multiplicar(num1, num2);
+            printf("El resultado de la multiplicacion es: %d\n", resultado);
+            break;
+        case 4:
+            if (num2 != 0)
+            {
+                printf("El resultado de la division es: %f\n", dividir(num1, num2));
+            }
+            else
+            {
+                printf("Error: No se puede dividir entre cero!\n");
+            }
+
+            break;
+        case 5:
+            printf("Adios\n");
+            break;
+        default:
+            printf("Opcion invalida!\n");
+            break;
+        }
+
+    } while (opcion != 5);
 
     return 0;
 }
