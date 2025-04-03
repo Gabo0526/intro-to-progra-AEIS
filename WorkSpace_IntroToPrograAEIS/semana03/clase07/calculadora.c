@@ -28,7 +28,7 @@ int main()
         aux = menu();
         operar(aux);
 
-        if (aux != 0 && aux != 7)
+        if (1 <= aux && aux <= 6)
         {
             ultimaOperacion = aux;
         }
