@@ -1,77 +1,70 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define _USE_MATH_DEFINES
-#include <math.h>
+#include <stdio.h>        // Biblioteca estandar para entrada y salida
+#include <stdlib.h>       // Biblioteca estandar para funciones de conversion y control de memoria
+#define _USE_MATH_DEFINES // Define constantes matematicas, como M_PI
+#include <math.h>         // Biblioteca matematica para operaciones trigonometricas
 
-// Variables globales
-// Se utilizan para almacenar los valores ingresados, el resultado de la operación
-// y el tipo de la última operación realizada.
-double num1, num2, resultado;
-int ultimaOperacion;
-char input[20]; // Para almacenar la entrada del usuario
+// Declaracion de variables globales
+// Estas variables se usaran en multiples funciones a lo largo del programa
+double num1, num2, resultado; // Variables para almacenar operandos y resultado de operaciones
+int ultimaOperacion;          // Variable que almacena el codigo de la ultima operacion realizada
+char input[20];               // Buffer para almacenar la entrada del usuario como texto
 
-// Declaración de funciones (prototipos)
-int menu();                             // Muestra el menú y obtiene la opción elegida
-void operar(int opcion);                // Ejecuta la operación seleccionada
-void leerUnNumero();                    // Pide al usuario un número
-void leerDosNumeros();                  // Pide al usuario dos números
-void calcUltOp();                       // Muestra la última operación realizada
-double sumar(double a, double b);       // Función para sumar
-double restar(double a, double b);      // Función para restar
-double multiplicar(double a, double b); // Función para multiplicar
-double dividir(double a, double b);     // Función para dividir
+// Declaracion de funciones (Prototipos)
+int menu();                             // Muestra el menu y devuelve la opcion elegida por el usuario
+void operar(int opcion);                // Ejecuta la operacion correspondiente segun la opcion elegida
+void leerUnNumero();                    // Lee un unico numero ingresado por el usuario
+void leerDosNumeros();                  // Lee dos numeros ingresados por el usuario
+void calcUltOp();                       // Muestra la ultima operacion realizada
+double sumar(double a, double b);       // Retorna la suma de dos numeros
+double restar(double a, double b);      // Retorna la resta de dos numeros
+double multiplicar(double a, double b); // Retorna la multiplicacion de dos numeros
+double dividir(double a, double b);     // Retorna la division de dos numeros
 
 int main()
 {
-    int aux = 0; // Variable para almacenar la opción del usuario
+    int aux = 0; // Variable auxiliar para almacenar la opcion del menu seleccionada por el usuario
 
-    // Bucle principal del programa
-    do
+    do // Bucle que se ejecuta hasta que el usuario elija salir (opcion 8)
     {
-        aux = menu(); // Muestra el menú y obtiene la opción
-        operar(aux);  // Ejecuta la operación correspondiente
+        aux = menu(); // Llama a la funcion para mostrar el menu y obtiene la opcion ingresada
+        operar(aux);  // Llama a la funcion que ejecuta la operacion correspondiente
 
-        if (aux != 0 && aux != 7) // No se guarda si es opción inválida o mostrar última operación
+        if (1 <= aux && aux <= 6) // Si la opcion elegida es una operacion matematica valida
         {
-            ultimaOperacion = aux;
+            ultimaOperacion = aux; // Se almacena como la ultima operacion realizada
         }
-    } while (aux != 8); // Repite hasta que el usuario elija salir
+    } while (aux != 8); // El bucle se ejecuta hasta que el usuario elija salir (8)
 
-    return 0;
+    return 0; // Indica que el programa termino correctamente
 }
 
-// Definición de funciones
-
-// Función que suma dos números
+// Implementacion de funciones matematicas basicas
 double sumar(double a, double b)
 {
-    return a + b;
+    return a + b; // Retorna la suma de los dos numeros
 }
 
-// Función que resta dos números
 double restar(double a, double b)
 {
-    return a - b;
+    return a - b; // Retorna la resta de los dos numeros
 }
 
-// Función que multiplica dos números
 double multiplicar(double a, double b)
 {
-    return a * b;
+    return a * b; // Retorna la multiplicacion de los dos numeros
 }
 
-// Función que divide dos números
 double dividir(double a, double b)
 {
-    return a / b; // Se asume que la validación de b != 0 ya se hizo antes de llamar a esta función
+    return a / b; // Retorna la division de los dos numeros
 }
 
-// Función que muestra el menú y obtiene la opción del usuario
+// Funcion que muestra el menu y obtiene la opcion elegida por el usuario
 int menu()
 {
-    int opcion = 0;
+    int opcion = 0; // Variable para almacenar la opcion ingresada
 
-    // Mostrar las opciones disponibles
+    // Muestra el menu en pantalla
     printf("Seleccione una operacion:\n");
     printf("1. Sumar\n");
     printf("2. Restar\n");
@@ -82,13 +75,13 @@ int menu()
     printf("7. Mostrar ultima operacion\n");
     printf("8. Salir\n");
     printf("Ingrese su opcion (1-8): ");
-    fgets(input, sizeof(input), stdin);
-    opcion = atoi(input); // Convertir la entrada en un número entero
+    fgets(input, sizeof(input), stdin); // Lee la entrada del usuario
+    opcion = atoi(input);               // Convierte la entrada a un numero entero y si falla retorna 0
 
-    return opcion;
+    return opcion; // Retorna la opcion elegida
 }
 
-// Función que ejecuta la operación elegida por el usuario
+// Funcion que ejecuta la operacion seleccionada por el usuario
 void operar(int opcion)
 {
     switch (opcion)
@@ -117,22 +110,22 @@ void operar(int opcion)
         }
         else
         {
+            resultado = NAN; // Si el divisor es 0, se asigna un valor no numerico
             printf("Error: No se puede dividir entre cero.\n");
-            resultado = INFINITY;
         }
         break;
     case 5:
         leerUnNumero();
-        resultado = cos(num1 * M_PI / 180); // Convertir a radianes
+        resultado = cos(num1 * M_PI / 180); // Convierte grados a radianes antes de calcular el coseno
         printf("El resultado de cos(%.2f) es: %.2f\n", num1, resultado);
         break;
     case 6:
         leerUnNumero();
-        resultado = sin(num1 * M_PI / 180); // Convertir a radianes
+        resultado = sin(num1 * M_PI / 180); // Convierte grados a radianes antes de calcular el seno
         printf("El resultado de sen(%.2f) es: %.2f\n", num1, resultado);
         break;
     case 7:
-        calcUltOp();
+        calcUltOp(); // Muestra la ultima operacion realizada
         break;
     case 8:
         printf("Adios!\n");
@@ -143,15 +136,15 @@ void operar(int opcion)
     }
 }
 
-// Función que pide al usuario un número y lo almacena en la variable global num1
+// Funcion para leer un solo numero desde la entrada del usuario
 void leerUnNumero()
 {
     printf("Ingrese el operando: ");
     fgets(input, sizeof(input), stdin);
-    num1 = atof(input); // Convertir la entrada en un número decimal
+    num1 = atof(input); // Convierte la entrada en un numero flotante y si falla retorna 0
 }
 
-// Función que pide al usuario dos números y los almacena en las variables globales num1 y num2
+// Funcion para leer dos numeros desde la entrada del usuario
 void leerDosNumeros()
 {
     printf("Ingrese el primer operando: ");
@@ -162,10 +155,10 @@ void leerDosNumeros()
     num2 = atof(input);
 }
 
-// Función que muestra la última operación realizada
+// Funcion que muestra la ultima operacion realizada
 void calcUltOp()
 {
-    if (ultimaOperacion == 5 || ultimaOperacion == 6) // Operaciones unarias (coseno y seno)
+    if (ultimaOperacion == 5 || ultimaOperacion == 6) // Si fue una operacion unaria
     {
         if (ultimaOperacion == 5)
         {
@@ -176,7 +169,7 @@ void calcUltOp()
             printf("\nLa ultima operacion realizada es: sin(%.2f) = %.2f\n", num1, resultado);
         }
     }
-    else // Operaciones binarias (suma, resta, multiplicación y división)
+    else // Si fue una operacion binaria u otros casos
     {
         switch (ultimaOperacion)
         {
