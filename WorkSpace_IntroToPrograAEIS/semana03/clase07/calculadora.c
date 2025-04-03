@@ -160,6 +160,9 @@ void leerDosNumeros()
     printf("Ingrese el primer operando: ");
     fgets(input, sizeof(input), stdin);
     num1 = atof(input);
+
+    printf("El contenido de input es: %s\n", input);
+
     printf("Ingrese el segundo operando: ");
     fgets(input, sizeof(input), stdin);
     num2 = atof(input);

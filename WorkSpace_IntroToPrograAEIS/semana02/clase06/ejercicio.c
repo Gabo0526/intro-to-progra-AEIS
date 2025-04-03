@@ -48,9 +48,14 @@ int main()
     printf("Ingrese el primer numero: ");
     fgets(input, sizeof(input), stdin);
     num1 = atoi(input);
+
+    printf("%s\n", input);
+
     printf("Ingrese el segundo numero: ");
     fgets(input, sizeof(input), stdin);
     num2 = atoi(input);
+
+    printf("El contenido de input ahora es: %s\n", input);
 
     // Mostrar opciones al usuario
     printf("Seleccione una operacion:\n");
