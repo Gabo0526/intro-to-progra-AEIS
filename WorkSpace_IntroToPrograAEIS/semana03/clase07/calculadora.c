@@ -176,7 +176,7 @@ void calcUltOp()
         {
             printf("\nLa ultima operacion realizada es: cos(%.2f) = %.2f\n", num1, resultado);
         }
-        if (ultimaOperacion == 6)
+        else if (ultimaOperacion == 6)
         {
             printf("\nLa ultima operacion realizada es: sin(%.2f) = %.2f\n", num1, resultado);
         }
