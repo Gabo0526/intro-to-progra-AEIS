@@ -20,6 +20,9 @@ double restar(double a, double b);      // Prototipo para la funcion de resta
 double multiplicar(double a, double b); // Prototipo para la funcion de multiplicacion
 double dividir(double a, double b);     // Prototipo para la funcion de division
 
+// NUEVA FUNCION
+double tangente(double a);
+
 // Funcion principal del programa
 int main()
 {
@@ -34,7 +37,7 @@ int main()
             ultimaOperacion = aux; // Entonces, recuerda la ultima operacion matematica realizada de manera satisfactoria
         }
 
-    } while (aux != 8); // El bucle se repite hasta que el usuario elija la opcion 8 (salir)
+    } while (aux != 9); // El bucle se repite hasta que el usuario elija la opcion 9 (salir) ACTUALIZACION
 
     return 0; // Fin del programa
 }
@@ -51,8 +54,9 @@ int menu()
     printf("4. Dividir\n");
     printf("5. cos\n");
     printf("6. sen\n");
-    printf("7. Mostrar ultima operacion\n");
-    printf("8. Salir\n");
+    printf("7. tan\n"); // NUEVA OPERACION
+    printf("8. Mostrar ultima operacion\n");
+    printf("9. Salir\n");
     printf("\nIngrese su opcion: ");
 
     fgets(input, sizeof(input), stdin); // Lee una linea de entrada del usuario y la guarda en el buffer 'input'
@@ -96,12 +100,12 @@ int operar(int opcion)
     returno = 0 -> Se realizo una operacion NO matematica O se realizo una operacion matematica INSATISFACTORIA (Division por cero)
     */
 
-    // Condicion para validar si la operacion es matematica (1-6)
-    if (1 <= opcion && opcion <= 6)
+    // Condicion para validar si la operacion es matematica (1-7) ACTUALIZACION
+    if (1 <= opcion && opcion <= 7) // ACTUALIZACION
     {
         retorno = 1; // Si la opcion esta dentro del rango de operaciones matematicas, la operacion es valida EN UN PRINCIPIO
     }
-    else // Si la opcion es 7 (mostrar ultima operacion), 8 (salir) o cualquier valor no valido
+    else // Si la opcion es 8 (mostrar ultima operacion), 9 (salir) o cualquier valor no valido ACTUALIZACION
     {
         retorno = 0; // No es una operacion matematica
     }
@@ -160,11 +164,17 @@ int operar(int opcion)
         printf("\nEl resultado de sin(%.2f) es: %.2f\n", num1, resultado); // Muestra el resultado
         break;
 
-    case 7:          // Caso para mostrar la ultima operacion realizada
+    case 7:                                                                // Caso para el calculo de la tan
+        leerUnNumero();                                                    // Lee un numero del usuario
+        resultado = tangente(num1);                                        // LLAMA A LA NUEVA FUNCION DEFINIDA
+        printf("\nEl resultado de tan(%.2f) es: %.2f\n", num1, resultado); // Muestra el resultado
+        break;
+
+    case 8:          // Caso para mostrar la ultima operacion realizada
         calcUltOp(); // Llama a la funcion que muestra la ultima operacion
         break;
 
-    case 8: // Caso para salir del programa
+    case 9: // Caso para salir del programa
         printf("\n\nAdios!\n\n");
         break;
 
@@ -199,6 +209,9 @@ void calcUltOp()
     case 6:
         printf("\n\nLa ultima operacion correctamente realizada es: sin(%.2f) = %.2f\n\n", num1, resultado); // Seno
         break;
+    case 7:
+        printf("\n\nLa ultima operacion correctamente realizada es: tan(%.2f) = %.2f\n\n", num1, resultado); // TANGENTE
+        break;
     default: // Si no se ha realizado ninguna operacion, muestra un error
         printf("\n\nError al calcular la ultima operacion!\n\n");
         break;
@@ -210,3 +223,10 @@ double sumar(double a, double b) { return a + b; }       // Suma de dos numeros
 double restar(double a, double b) { return a - b; }      // Resta de dos numeros
 double multiplicar(double a, double b) { return a * b; } // Multiplicacion de dos numeros
 double dividir(double a, double b) { return a / b; }     // Division de dos numeros
+
+// NUEVA FUNCION
+
+double tangente(double a)
+{
+    return tan(a * M_PI / 180);
+}
