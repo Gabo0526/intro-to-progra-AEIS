@@ -22,5 +22,10 @@ int main()
 
     printf("El valor de nombre3 es: %s\n", nombre3);
 
+    char input[100];
+
+    // %s
+    // %.2f
+
     return 0;
 }
