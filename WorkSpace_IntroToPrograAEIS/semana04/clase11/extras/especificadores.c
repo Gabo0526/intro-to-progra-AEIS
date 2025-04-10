@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 int main()
 {
@@ -8,6 +9,7 @@ int main()
     printf("Entero: %d\n", entero);
     printf("Flotante: %.2f\n", flotante);
     printf("Cadena: %s\n", cadena);
-    printf("%lld", sizeof(cadena));
+    printf("%lld\n", sizeof(cadena));
+    printf("%zu\n", strlen(cadena));
     return 0;
 }
