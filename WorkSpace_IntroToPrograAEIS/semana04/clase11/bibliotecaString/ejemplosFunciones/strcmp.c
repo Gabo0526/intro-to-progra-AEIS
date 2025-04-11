@@ -3,6 +3,8 @@
 
 int main()
 {
+    // strcmp retorna 0 siempre y cuando las dos cadenas de caracteres son exactamente iguales
+
     // Declaramos dos cadenas de caracteres terminadas en '\0' (caracter nulo)
     char cadena1[] = "abc";
     char cadena2[] = "abd";
@@ -24,7 +26,7 @@ int main()
     cadena1[2] = 'c' -> ASCII: 99
     cadena2[2] = 'd' -> ASCII: 100 (Diferentes: aqui termina la comparacion)
 
-    Resultado de strcmp: 99 - 100 = -1
+    Resultado de strcmp: 99 - 100 = -1 == 'c' - 'd'
     */
 
     // Evaluamos el resultado de strcmp
@@ -39,6 +41,7 @@ int main()
 
     char input[100];   // Declaramos un arreglo de 100 caracteres para almacenar la entrada del usuario
     int retornoStrcmp; // Variable para guardar el resultado de strcmp
+    int negacion;
 
     do
     {
@@ -48,7 +51,21 @@ int main()
         fgets(input, sizeof(input), stdin);
 
         // Eliminamos el salto de linea '\n' que fgets lee al final si cabe en el buffer y se reemplaza por el caracter nulo
-        input[strcspn(input, "\n")] = 0;
+
+        /*
+        input:
+        0: x
+        1: x
+        2: x
+        ...
+        n: '/n'
+        ...
+        99: Basura
+        */
+
+        int indice = (int)strcspn(input, "\n");
+
+        input[indice] = 0; // input[strcspn(input, "\n")] = 0;
 
         // Comparamos la entrada del usuario con la cadena literal "Simon"
         retornoStrcmp = strcmp(input, "Simon");
@@ -57,7 +74,13 @@ int main()
         printf("El valor de retorno de strcmp es: %d\n", retornoStrcmp);
 
         // Aplicamos la negacion logica al valor de retorno
-        int negacion = !retornoStrcmp;
+
+        /*
+        Si el usuario ingreso exactamente "Simon", entonces negacion seria 1
+        Si el usuario ingreso cualquier otra cosa, entonces negacion seria 0
+         */
+
+        negacion = !retornoStrcmp;
 
         /*
         Explicacion:
@@ -66,7 +89,7 @@ int main()
         */
         printf("La negacion del retorno es: %d\n", negacion);
 
-    } while (!retornoStrcmp); // Si retornoStrcmp es 0 (es decir, las cadenas sean iguales), su negacion es 1, lo que while evalua como verdadero.
+    } while (negacion); // Si retornoStrcmp es 0 (es decir, las cadenas sean iguales), su negacion es 1, lo que while evalua como verdadero.
     // Entonces, mientras las cadenas sean iguales, continua el ciclo
 
     return 0;

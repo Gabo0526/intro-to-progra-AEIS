@@ -6,10 +6,9 @@ int main()
     char input[20];
     int n = 0;
 
-    printf("Ingresa un numero: ");
-
     do
     {
+        printf("Ingresa un numero: ");
         fgets(input, sizeof(input), stdin);
         n = atoi(input); // atoi retorna 0 si falla
 
